@@ -1,10 +1,52 @@
 
+.overflow-x-hidden{
+    overflow-x: hidden!important;
+}
 
+/* Floating Buttons */
 .position-fixed{
     bottom: 30px;
     right: 10vw;
 }
 
-#infobox{
-    /* background-color: #999; */
+/* Custom Colors */
+.custom-text-success{
+    color: #06c706 !important;
 }
+.custom-bg-success{
+    background-color: #06c706 !important;
+}
+.custom-border-success{
+    border-color: #06c706 !important;
+}
+
+.custom-text-danger{
+    color: #de1f33 !important;
+}
+.custom-bg-danger{
+    background-color: #de1f33 !important;
+}
+.custom-border-danger{
+    border-color: #de1f33 !important;
+}
+
+.custom-text-primary{
+    color: #1f3ede !important;
+}
+.custom-bg-primary{
+    background-color: #1f3ede !important;
+}
+.custom-border-primary{
+    border-color: #1f3ede !important;
+}
+
+.custom-text-secondary{
+    color: #de981f !important;
+}
+.custom-bg-secondary{
+    background-color: #de981f !important;
+}
+.custom-border-secondary{
+    border-color: #de981f !important;
+}
+

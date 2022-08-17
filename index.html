@@ -11,14 +11,17 @@
 
     <body onload="fetchContacts()">
 
-        <div class="container text-center">
+        <div class="container-fluid text-center overflow-x-hidden">
+            <div class="row">
+                <h2 class="fw-lighter mt-3 col-md-6 text-center px-5">Contact List</h2>
+            </div>
             <section class="row">
-                <div id="table" class="col-md-6">
+                <div id="table" class="col-md-6 ms-sm-3 ms-md-5">
                     <div style="height:50vh">
                         <i class="fa-solid fa-cloud fa-5x fa-beat-fade position-relative top-50"></i>
                     </div>
                 </div>
-                <div id="infobox" class="col-5 position-fixed top-0">
+                <div id="infobox" class="col-6 position-fixed top-0 end-0">
 
                 </div>
             </section>
@@ -28,13 +31,13 @@
                     <div class="col">
                         <!-- if sticky buttons dont respond well, remove div col above -->
                         <button id="refresh" type="button" 
-                                class="btn bg-primary text-light border-white rounded-circle"
+                                class="btn custom-bg-primary text-light border-white rounded-circle"
                                 style="height:50px;width:50px">
                             <i class="fa fa-sync fs-4" style="margin-top:3px"></i>
                         </button>
                         <button id="addContact" type="button"
                                 data-bs-toggle="modal" data-bs-target="#addContactModal"
-                                class="btn bg-success text-light border-white rounded-circle mx-2"
+                                class="btn custom-bg-secondary text-light border-white rounded-circle mx-2"
                                 style="height:50px;width:50px">
                             <i class="fa fa-add fs-3"></i>
                         </button>
@@ -53,9 +56,8 @@
                 </div>
                 <div class="info-modal-body text-center">
                   
-
                     <!-- <div class="container-fluid mt-5">
-                        <h3 class="fw-lighter">Contact Info</h3>
+                        <h2 class="fw-lighter">Contact Info</h2>
                         <div class="row mt-3">
                             <div id="avatarImage" class="col-12">
                                 <img src="./defaultImg.png" class="col-4 mx-auto">
@@ -87,7 +89,6 @@
                         </form>
                     </div> -->
 
-
                 </div>
                 <!-- <div class="info-modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -108,36 +109,36 @@
                 </div>
                 <div class="add-modal-body text-center">
 
-                    <div class="container-fluid mt-5">
-                        <h3 class="fw-lighter">Add Contact</h3>
+                    <div class="container-fluid mt-3">
+                        <h2 class="fw-lighter">Add Contact</h2>
                         <div class="row mt-3">
                             <div id="addAvatarImage" class="col-12">
                                 <img src="./defaultImg.png" class="col-4 mx-auto">
                             </div>
                         </div>
-                        <form id="addForm" class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10">
-                                <label for="firstname" class="col-3 mt-4">First name</label>
-                                <input name="firstname" class="col-8" type="text" id="addFirstname">
-                                <label for="lastname"class="col-3 mt-4" >last name</label>
-                                <input name="lastname" class="col-8" type="text" id="addLastname">
-                                <label for="mobile"class="col-3 mt-4" >Mobile</label>
-                                <input name="mobile" class="col-8" type="text" id="addMobile">
-                                <label for="email"class="col-3 mt-4" >Email</label>
-                                <input name="email" class="col-8" type="text" id="addEmail">
-                                <label for="avatar" class="col-3" id="avatarLabel" hidden>Change profile image</label><br>
-                                <input name="avatar" class="col-8 mt-4" type="file" id="addAvatar" hidden>
-                                <div class="row">
-                                    <div id="formSubmit" class="col-6 mt-5 text-end">
-                                        <button id="btnAddContact" type="submit" class="rounded-circle fs-3 px-2 text-success border-success"><i class="fa-solid fa-check"></i></button>
+                        <form id="addForm" class="row mt-3">
+                            <!-- <div class="col-1"></div> -->
+                            <!-- <div class="col-12"> -->
+                                <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="firstname">First name</label>
+                                <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center' name="firstname" type="text" id="firstnameNew">
+                                <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="lastname">Last name</label>
+                                <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center' name="lastname" type="text" id="lastnameNew">
+                                <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="mobile">Mobile</label>
+                                <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center' name="mobile" type="text" id="mobileNew">
+                                <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="email">Email</label>
+                                <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center' name="email" type="text" id="emailNew">
+                                <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="avatar" id="avatarLabel" hidden>Avatar</label>
+                                <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center' name="avatar" type="file" id="avatarNew" onchange='updateImg(this, "addAvatarImage")' hidden>
+                                <div class="row px-0 mx-auto">
+                                    <div id="formSubmit" class="col-6 mt-4 text-end">
+                                        <button id="btnAddContact" type="submit" class="rounded-circle fs-3 px-2 custom-text-success custom-border-success"><i class="fa-solid fa-check"></i></button>
                                     </div>
-                                    <div id="formCancel" class="col-6 mt-5 text-start">
-                                        <button id="btnCancelAdd" type="button" class="rounded-circle fs-3 px-2 text-danger border-danger"><i class="fa-solid fa-x"></i></button>
+                                    <div id="formCancel" class="col-6 mt-4 text-start">
+                                        <button id="btnCancelAdd" type="button" class="rounded-circle fs-3 px-2 custom-text-danger custom-border-danger"><i class="fa-solid fa-x"></i></button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-1"></div>
+                            <!-- </div> -->
+                            <!-- <div class="col-1"></div> -->
                         </form>
                     </div>
 
@@ -157,7 +158,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script>
             document.getElementById("refresh").addEventListener('click', fetchContacts)
-            //document.getElementById("addContact").addEventListener('click', addContact)
+            document.getElementById("addContact").addEventListener('click', addContact)
             
             let lgScreen = window.innerWidth>1000 // check if big screen
 
@@ -175,50 +176,51 @@
             function displayOutput(data){
                 const table = document.getElementById('table')
                 let lastname=''
-                let colSize = ['col-2','col-4','col-4']
-                let output = ``
-                console.log('large screen: '+lgScreen)
+                let firstname=''
+                let colSize = 'col-3'
+                //let colSize = ['col-2','col-4','col-4']
+                let output = `<div class="row justify-content-center justify-content-sm-start">`
+                //console.log('large screen: '+lgScreen)
                 //const modalAttributes = `data-bs-toggle="modal" data-bs-target="#infoModal"`
                 for(a in data){
                     lastname = data[a].lastname
-                    if (window.innerWidth<250) {
-                        lastname = lastname[0].toUpperCase()+'.'
-                        colSize[0] = 'col-3'
-                        colSize[1] = 'col-7'
-                        colSize[2] = 'col-1'
+                    firstname = data[a].firstname
+                    if (window.innerWidth<270) {
+                        lastname = lastname.slice(0,4)+'.'
+                        firstname = firstname.slice(0,4)+'.'
+                        colSize = 'col-5'
+                        //colSize[0] = 'col-3'
+                        //colSize[1] = 'col-7'
+                        //colSize[2] = 'col-1'
                     }
+                    // change col-3 to col-5 when width < 300
                     output += `
-                    <div class="">
-                        <div class="row my-1" onclick="getContact(${data[a].id}) ">
-                            <div class="${colSize[0]} px-0">
-                                <img src="${rootPath}controller/uploads/${data[a].avatar}" width="40">
-                            </div>
-                            <div class="${colSize[1]} text-start px-0 fs-3">
+                            <div class="${colSize} col-sm-2 m-1" onclick="getContact(${data[a].id})">
+                                <img src="${rootPath}controller/uploads/${data[a].avatar}" width="60">
                                 <p class="m-0 p-0">${data[a].firstname}</p>
-                            </div>
-                            <div class="${colSize[2]} text-start px-0 fs-3">
                                 <p class="m-0 p-0">${lastname}</p>
-                            </div>
-
-                            ${(lgScreen)?``:`
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infoModal"
-                                style="color: transparent; background: transparent; margin-top: -2.5rem">
-                                Click for contact info
-                            </button>`
-                            }
-
-                        </div>
-                    </div>
+                                ${(lgScreen)?``:`
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#infoModal"
+                                    style="color: transparent; background: rgba(255,255,0,0); margin-top: -6rem">
+                                    Click for contact info
+                                </button>`
+                                }
+                            </div>                 
                     `
                 }
-                output += ``
+                output += `</div>`
                 table.innerHTML = output
+                if(lgScreen){
+                    getContact(data[0].id)
+                }
             }
 
-            // replaced with addModal
-            // function addContact(){
-            //     window.open("add-contact.html", "_self")
-            // }
+            function addContact(){
+                document.getElementById('addForm').reset()
+                
+                // replaced with addModal
+                //window.open("add-contact.html", "_self")
+            }
 
             // replaced with infoModal
             // function editContact(id){
@@ -228,36 +230,32 @@
             // DISPLAY INFO in index
             const infobox = document.getElementById('infobox')
             const outputInfoHTML = `
-                <div class="container-fluid mt-5">
-                    <h3 class="fw-lighter">Contact Info</h3>
+                <div class="container-fluid mt-3">
+                    <h2 class="fw-lighter">Contact Info</h2>
                     <div class="row mt-3">
                         <div id="avatarImage" class="col-12">
                             <img src="./defaultImg.png" class="col-4 mx-auto">
                         </div>
                     </div>
-                    <form id="editForm" class="row">
-                        <div class="col-1"></div>
-                        <div class="col-10">
-                            <label for="firstname" class="col-3 mt-4">First name</label>
-                            <input name="firstname" class="col-8" type="text" id="firstname" readonly>
-                            <label for="lastname"class="col-3 mt-4" >last name</label>
-                            <input name="lastname" class="col-8" type="text" id="lastname" readonly>
-                            <label for="mobile"class="col-3 mt-4" >Mobile</label>
-                            <input name="mobile" class="col-8" type="text" id="mobile" readonly>
-                            <label for="email"class="col-3 mt-4" >Email</label>
-                            <input name="email" class="col-8" type="text" id="email" readonly>
-                            <label for="avatar" class="col-3" id="avatarLabel" hidden>Change profile image</label><br>
-                            <input name="avatar" class="col-8 mt-4" type="file" id="avatar" hidden>
-                            <div class="row">
-                                <div id="formBtn1" class="col-6 mt-5 text-end">
-                                    <button id="editContactBtn" type="button" class="rounded-circle fs-3 px-2 text-success border-success"><i class="fa-solid fa-pencil"></i></button>
-                                </div>
-                                <div id="formBtn2" class="col-6 mt-5 text-start">
-                                    <button id="deleteContactBtn" type="button" class="rounded-circle fs-3 px-2 text-danger border-danger"><i class="fa-solid fa-trash"></i></button>
-                                </div>
+                    <form id="editForm" class="row mt-3">
+                        <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="firstname">First name</label>
+                        <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center text-sm-start' name="firstname" type="text" id="firstname" readonly>
+                        <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="lastname">Last name</label>
+                        <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center text-sm-start' name="lastname" type="text" id="lastname" readonly>
+                        <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="mobile">Mobile</label>
+                        <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center text-sm-start' name="mobile" type="text" id="mobile" readonly>
+                        <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="email">Email</label>
+                        <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center text-sm-start' name="email" type="text" id="email" readonly>
+                        <label class='col-8 col-sm-4 mx-auto mx-sm-0 text-sm-end mt-2 mt-sm-0 fw-semibold' for="avatar" class="col-3" id="avatarLabel" hidden>Change profile image</label>
+                        <input class='col-8 col-sm-6 mx-auto mx-sm-0 mb-sm-3 text-center text-sm-start' name="avatar" class="col-8 mt-4" type="file" id="avatar" onchange='updateImg(this, 'avatarImage')' hidden>
+                        <div class="row px-0 mx-auto">
+                            <div id="formBtn1" class="col-6 mt-4 text-end">
+                                <button id="editContactBtn" type="button" onclick='editContact()' class="rounded-circle fs-3 px-2 custom-text-success custom-border-success"><i class="fa-solid fa-pencil"></i></button>
+                            </div>
+                            <div id="formBtn2" class="col-6 mt-4 text-start">
+                                <button id="deleteContactBtn" type="button" onclick='deleteContact()' class="rounded-circle fs-3 px-2 custom-text-danger custom-border-danger"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
-                        <div class="col-1"></div>
                     </form>
                 </div>
             `
@@ -272,8 +270,8 @@
                 // innerHTML in modal
                 document.querySelector('#infoModal .info-modal-body').innerHTML = outputInfoHTML
             }
-            document.getElementById('editContactBtn').addEventListener('click', editContact)
-            document.getElementById('deleteContactBtn').addEventListener('click', deleteContact)
+            ////document.getElementById('editContactBtn').addEventListener('click', editContact)
+            ////document.getElementById('deleteContactBtn').addEventListener('click', deleteContact)
             //document.getElementById('homeLink').addEventListener('click', homeLink)
             
             let currentID
@@ -302,10 +300,10 @@
             }
                 
             function editContact(){
-                const editBtn   = `<button id="editContactBtn" type="button" class="rounded-circle fs-3 px-2 text-success border-success"><i class="fa-solid fa-pencil"></i></button>`
-                const deleteBtn = `<button id="deleteContactBtn" type="button" class="rounded-circle fs-3 px-2 text-danger border-danger"><i class="fa-solid fa-trash"></i></button>`
-                const submitBtn = `<button id="submitForm" type="submit" class="rounded-circle fs-3 px-2 text-success border-success"><i class="fa-solid fa-check"></i></button>`
-                const cancelBtn = `<button id="cancelBtn" type="button" class="rounded-circle fs-3 px-2 text-danger border-danger"><i class="fa-solid fa-x"></i></button>`
+                const editBtn   = `<button id="editContactBtn" type="button" onclick='editContact()' class="rounded-circle fs-3 px-2 custom-text-success custom-border-success"><i class="fa-solid fa-pencil"></i></button>`
+                const deleteBtn = `<button id="deleteContactBtn" type="button" onclick='deleteContact()' class="rounded-circle fs-3 px-2 custom-text-danger custom-border-danger"><i class="fa-solid fa-trash"></i></button>`
+                const submitBtn = `<button id="submitForm" type="submit" class="rounded-circle fs-3 px-2 custom-text-success custom-border-success"><i class="fa-solid fa-check"></i></button>`
+                const cancelBtn = `<button id="cancelBtn" type="button" class="rounded-circle fs-3 px-2 custom-text-danger custom-border-danger"><i class="fa-solid fa-x"></i></button>`
 
                 document.getElementById("firstname").readOnly   = !document.getElementById("firstname").readOnly    //false (initial value)
                 document.getElementById("lastname").readOnly    = !document.getElementById("lastname").readOnly     //false
@@ -322,8 +320,8 @@
                 if (document.getElementById('firstname').readOnly) {
                     document.getElementById('formBtn1').innerHTML = editBtn
                     document.getElementById('formBtn2').innerHTML = deleteBtn
-                    document.getElementById('editContactBtn').addEventListener('click', editContact)
-                    document.getElementById('deleteContactBtn').addEventListener('click', deleteContact)
+                    //document.getElementById('editContactBtn').addEventListener('click', editContact)
+                    //document.getElementById('deleteContactBtn').addEventListener('click', deleteContact)
                     document.querySelector('#avatarImage').innerHTML = document.querySelector('#avatarImage').innerHTML // clear eventListener
                 }else{
                     // EDIT MODE
@@ -431,7 +429,7 @@
                 .then(function(data){
                     fetchContacts()
                     document.querySelector('#addContactModal .btn-close').click()
-                    document.getElementById('addForm').reset()
+                    //document.getElementById('addForm').reset()
                     if (data == "1") {
                         alert("Contact added.")
                     }else{
@@ -447,9 +445,80 @@
 
             // function addContact(){
             //     let outputAddHTML = ``
-            //     
             //     document.querySelector('#addContactModal .add-modal-body').innerHTML = outputAddHTML
             // }
+
+
+            function updateImg(file, id){
+                file = file.files[0]
+                url = URL.createObjectURL(file)
+                document.querySelector('#'+id+' img').src =  url
+            }
+
+            // START TEST CODE: LOAD TEST DATA
+            let test = confirm('get test data?')
+            if(test){
+                getTestData()
+            }
+
+            const firstname = document.getElementById('firstnameNew')
+            const lastname = document.getElementById('lastnameNew')
+            const mobile = document.getElementById('mobileNew')
+            const email = document.getElementById('emailNew')
+            
+            function getTestData(){
+                fetch('https://random-data-api.com/api/users/random_user?size=5')
+                .then(function(response){
+                    return response.json()
+                })
+                .then(function(data){   
+                    for(i in data){
+                        firstname.value = data[i]['first_name']
+                        lastname.value = data[i]['last_name']
+                        mobile.value = data[i]['phone_number'].slice(0,14).replaceAll('.','').replaceAll('-','')
+                        email.value = data[i]['email']
+                        const form = new FormData(document.querySelector('#addForm'))
+                        form.append('apiKey', apiKey)
+
+                        fetch(data[i]['avatar'])
+                        .then(function(resp){
+                            return resp.blob()
+                        })
+                        .then(function(blob){
+                            let file = new File([blob],'image.png',{
+                                lastModified: 1654443013251,
+                                lastModifiedDate: new Date,
+                                name: 'newfile.png',
+                                size: this.size,
+                                type: "image/png",
+                                webkitRelativePath: ""
+                            })
+                            form.append('avatar', file)
+                            //console.log(...form)
+                            fetch(rootPath + 'controller/insert-contact/', {
+                                method: 'POST',
+                                headers: {'Accept':'application/json, *.*'},
+                                body: form
+                            })
+                            .then(function(response){
+                                return response.text()
+                            })
+                            .then(function(data){
+                                if (data == "1") {
+                                    console.log("Contact added.")
+                                }else{
+                                    console.log(data)
+                                }
+                                document.getElementById("refresh").click()
+                            })
+                        })    
+                    }
+                })
+                //refresh fetchContacts()
+            }
+            // END TEST CODE
+
+
         </script>
     </body>
 </html>
