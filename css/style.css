@@ -11,42 +11,49 @@
 
 /* Custom Colors */
 .custom-text-success{
-    color: #06c706 !important;
+    color: #00d41e !important;
 }
 .custom-bg-success{
-    background-color: #06c706 !important;
+    background-color: #00d41e !important;
 }
 .custom-border-success{
-    border-color: #06c706 !important;
+    border-color: #00d41e !important;
 }
 
 .custom-text-danger{
-    color: #de1f33 !important;
+    color: #ff2222 !important;
 }
 .custom-bg-danger{
-    background-color: #de1f33 !important;
+    background-color: #ff2222 !important;
 }
 .custom-border-danger{
-    border-color: #de1f33 !important;
+    border-color: #ff2222 !important;
 }
 
 .custom-text-primary{
-    color: #1fb9ec !important;
+    color: #1F51FF !important;
 }
 .custom-bg-primary{
-    background-color: #1fb9ec !important;
+    background-color: #1F51FF !important;
 }
 .custom-border-primary{
-    border-color: #1fb9ec !important;
+    border-color: #1F51FF !important;
 }
 
 .custom-text-secondary{
-    color: #c123ef !important;
+    color: #ff5f15 !important;
 }
 .custom-bg-secondary{
-    background-color: #c123ef !important;
+    background-color: #ff5f15 !important;
 }
 .custom-border-secondary{
-    border-color: #c123ef !important;
+    border-color: #ff5f15 !important;
 }
 
+#editContactBtn, #submitForm, #btnAddContact{
+    border: 0.2rem solid!important;
+}
+
+#deleteContactBtn, #cancelBtn, #btnCancelAdd{
+    border: 0.2rem solid!important;
+}
