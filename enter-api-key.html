@@ -3,14 +3,18 @@
     <title>API Key</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
-<body>
-    <div>Please enter a valid API key.</div>
-    <form>
-        <input type="email" id="apiKey" name="apiKey">
-        <button id="submitApiKey">Submit</button>
-    </form>
+<body class="bg-dark text-white">
+    <div class="container-fluid text-center position-absolute top-50">
+        <h2>Please enter a valid API key.</h2>
+        <form>
+            <input type="email" id="apiKey" name="apiKey" class="text-center">
+            <button id="submitApiKey" class="border-white bg-white fw-bold">Submit</button>
+        </form>
+    </div>
 
+    <script src="js/bootstrap.min.js"></script>
     <script>
         let rootPath = "https://mysite.itvarsity.org/api/ContactBook/"
         document.getElementById("submitApiKey").addEventListener('click', setApiKey)
@@ -20,17 +24,17 @@
 
             apiKey = document.getElementById("apiKey").value
             fetch(rootPath+"controller/api-key/?apiKey="+apiKey)
-                .then(function (response){
-                    return response.text()
-                })
-                .then(function (data){
-                    if(data == "1"){
-                        localStorage.setItem("apiKey", apiKey)
-                        window.open("index.html","_self")
-                    }else{
-                        alert(data + "Invalid API key entered.")
-                    }
-                })
+            .then(function (response){
+                return response.text()
+            })
+            .then(function (data){
+                if(data == "1"){
+                    localStorage.setItem("apiKey", apiKey)
+                    window.open("index.html","_self")
+                }else{
+                    alert(data + ": Invalid API key entered.")
+                }
+            })
         }
     </script>
 </body>
