@@ -113,6 +113,7 @@
             })
             document.getElementById('btnAddContact').addEventListener('click', submitAddContactForm)
             
+            const newCriteriaSym = "__";
             const databaseLimit = 50
             const newEntries = 10
             const avatarNew = document.querySelector('#addAvatarImage>img')
@@ -261,12 +262,19 @@
                     lastname = data[a].lastname
                     firstname = data[a].firstname
                     
-                    if(dbContactInvalid(data[a])){
+                    let failNewCriteriaFlag = false
+                    
+                    if(failNewCriteria(data[a].email)){
+                        failNewCriteriaFlag = true;
+                    }
+
+                    if(failNewCriteriaFlag || dbContactInvalid(data[a])){
                         invalidID = data[a].id
                         deleteContact()     // delete invalid contact
                         invalidID = -1
                         continue mainLoop   // skip this iteration
                     }
+                    data[a].email = removeIdentifier(data[a].email)
                     if(currentID!==0){getContact(currentID)} // on lgscreen, display current contact in side panel
                     
                     output += `
@@ -288,6 +296,21 @@
                 if(lgScreen && currentID===0){
                     getContact(data[0].id)
                 }
+            }
+
+            function failNewCriteria(text){
+                if(!text.endsWith(newCriteriaSym)){
+                    console.log(text+'FAILED')
+                    return true
+                }
+                return false
+            }
+
+            function removeIdentifier(text){
+                if(text.endsWith(newCriteriaSym)){
+                    return (text.slice(0, text.length-newCriteriaSym.length))
+                }
+                return text
             }
 
             function dbContactInvalid(contact){
@@ -367,7 +390,7 @@
                 document.getElementById("firstname").value = data[0].firstname
                 document.getElementById("lastname").value = data[0].lastname
                 document.getElementById("mobile").value = data[0].mobile
-                document.getElementById("email").value = data[0].email
+                document.getElementById("email").value = removeIdentifier(data[0].email)
             }
             
             function editContact(editMode){
@@ -686,15 +709,22 @@
                     lastname.value = lastname.value.trim()
                     mobile.value =mobile.value.trim().replaceAll(' ','')
                     email.value = email.value.trim().replaceAll(' ','')
+
+                    email.value = addNewCriteriaSym(email.value)
                 }else{
                     firstnameNew.value = firstnameNew.value.trim()
                     lastnameNew.value = lastnameNew.value.trim()
                     mobileNew.value =mobileNew.value.trim().replaceAll(' ','')
                     emailNew.value = emailNew.value.trim().replaceAll(' ','')
+
+                    emailNew.value = addNewCriteriaSym(emailNew.value)
                 }
             }
             // END input validation
 
+            function addNewCriteriaSym(text){
+                return text+newCriteriaSym
+            }
 
             // START populate database with test data
             function populateDB(length){
